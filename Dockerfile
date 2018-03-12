@@ -37,3 +37,6 @@ run git config --global user.name "a b" && git config --global user.email "a@b.c
 run wget -q https://raw.githubusercontent.com/levingerdes/rock-docker/master/bootstrap.sh &&\
     wget -q https://raw.githubusercontent.com/levingerdes/rock-docker/master/config.yml
 run yes yes | sh ./bootstrap.sh
+
+# compile all packages
+run bash -c ". env.sh && amake"
