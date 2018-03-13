@@ -6,8 +6,8 @@ env DEBIAN_FRONTEND=noninteractive
 
 # apt-get: proxy settings, update, upgrade, install dependencies
 run echo "Acquire::http::Pipeline-Depth '0';\nAcquire::http::No-Cache=True;\nAcquire::BrokenProxy=true;" > /etc/apt/apt.conf.d/99fixbadproxy
-run apt-get clean && apt-get update && apt-get upgrade -y --fix-missing && apt-get -y autoremove
-run apt-get install -y \
+run apt-get clean && apt-get update && apt-get upgrade -y --fix-missing &&\
+    apt-get install -y \
     apt-utils \
     ruby \
     wget \
@@ -17,15 +17,17 @@ run apt-get install -y \
     libapr1-dev \
     libpopt-dev \
     linux-headers-$(uname -r) \
-    vim
+    vim &&\
+    apt-get autoremove
 # - libapr1-dev is necessary for activeMQ and cannot be automatically installed
 # via dependencies yet
 # - libpopt-dev is necessary for libpcan (pcan_pcie_mini)
 # - linux headers provide ..linux/version.h needed during pcan installation
 
 # create and switch to non-root user in sudoers group
-run adduser --disabled-password --gecos '' user && adduser user sudo
-run echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+run adduser --disabled-password --gecos '' user &&\
+    adduser user sudo &&\
+    echo "%sudo ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 user user
 run mkdir -p /home/user/rock
 workdir /home/user/rock
