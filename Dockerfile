@@ -10,6 +10,7 @@ run apt-get clean && apt-get update && apt-get upgrade -y --fix-missing &&\
     apt-get install -y \
     apt-utils \
     ruby \
+    ruby-dev \
     wget \
     sudo \
     build-essential \
