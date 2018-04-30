@@ -17,6 +17,7 @@ run apt-get clean && apt-get update && apt-get upgrade -y --fix-missing &&\
     git \
     libapr1-dev \
     libpopt-dev \
+    libssl-dev \
     linux-headers-$(uname -r) \
     vim &&\
     apt-get autoremove
