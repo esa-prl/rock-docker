@@ -6,7 +6,7 @@ env DEBIAN_FRONTEND=noninteractive
 
 # apt-get: proxy settings, update, upgrade, install dependencies
 run echo "Acquire::http::Pipeline-Depth '0';\nAcquire::http::No-Cache=True;\nAcquire::BrokenProxy=true;" > /etc/apt/apt.conf.d/99fixbadproxy
-run apt-get clean && apt-get update && apt-get upgrade -y --fix-missing &&\
+run apt-get clean && apt-get update --fix-missing &&\
     apt-get install -y \
     apt-utils \
     ruby \
