@@ -1,6 +1,10 @@
 from ubuntu:16.04
 
 env DEBIAN_FRONTEND=noninteractive
+
+# prevent 'modprobe pcan' in drivers.autobuild from being run
+env RUNNING_IN_DOCKER='true'
+
 # TODO: something similar to
 #env AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR=1
 
