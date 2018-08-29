@@ -20,15 +20,16 @@ run apt-get clean && apt-get update --fix-missing &&\
     build-essential \
     git \
     libapr1-dev \
-    libpopt-dev \
+    autoconf \
+    libtool \
     libssl-dev \
+    libpopt-dev \
     linux-headers-$(uname -r) \
     vim &&\
     apt-get autoremove
-# - libapr1-dev is necessary for activeMQ and cannot be automatically installed
-# via dependencies yet
-# - libpopt-dev is necessary for libpcan (pcan_pcie_mini)
-# - linux headers provide ..linux/version.h needed during pcan installation
+# libapr1-dev, autoconf, and libtool are necessary for activeMQ
+# libpopt-dev is necessary for libpcan (pcan_pcie_mini)
+# linux headers provide ..linux/version.h needed during pcan installation
 
 # create and switch to non-root user in sudoers group
 run adduser --disabled-password --gecos '' user &&\
