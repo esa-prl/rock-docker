@@ -24,6 +24,7 @@ run apt-get clean && apt-get update --fix-missing &&\
     libtool \
     libssl-dev \
     libpopt-dev \
+    libpng++-dev \
     linux-headers-$(uname -r) \
     vim &&\
     apt-get autoremove
