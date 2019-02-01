@@ -44,8 +44,7 @@ workdir /home/user/rock
 run git config --global user.name "a b" && git config --global user.email "a@b.c"
 
 # download and run bootstrap
-run wget -q https://raw.githubusercontent.com/levingerdes/rock-docker/master/bootstrap.sh &&\
-    wget -q https://raw.githubusercontent.com/levingerdes/rock-docker/master/config.yml
+copy bootstrap.sh config.yml /home/user/rock/
 run yes yes | sh ./bootstrap.sh
 
 # compile all packages
