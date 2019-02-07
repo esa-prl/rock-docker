@@ -1,12 +1,10 @@
 from ubuntu:16.04
 
-env DEBIAN_FRONTEND=noninteractive
-
 # prevent 'modprobe pcan' in drivers.autobuild from being run
-env RUNNING_IN_DOCKER='true'
+env RUNNING_IN_DOCKER 'true'
 
-# TODO: something similar to
-#env AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR=1
+arg DEBIAN_FRONTEND=noninteractive
+env AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR 1
 
 # apt-get: proxy settings, update, upgrade, install dependencies
 run echo "Acquire::http::Pipeline-Depth '0';\nAcquire::http::No-Cache=True;\nAcquire::BrokenProxy=true;" > /etc/apt/apt.conf.d/99fixbadproxy
@@ -45,7 +43,7 @@ run git config --global user.name "a b" && git config --global user.email "a@b.c
 
 # download and run bootstrap
 copy bootstrap.sh config.yml /home/user/rock/
-run yes yes | sh ./bootstrap.sh
+run sh ./bootstrap.sh
 
 # compile all packages
 run bash -c ". env.sh && amake"
