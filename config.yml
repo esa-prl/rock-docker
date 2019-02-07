@@ -1,5 +1,4 @@
 ---
-ruby_executable: "/usr/bin/ruby2.3"
 gems_install_path: "/home/user/.autoproj/gems"
 prefer_indep_over_os_packages: false
 osdeps_mode: all
