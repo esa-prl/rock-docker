@@ -24,11 +24,13 @@ run apt-get clean && apt-get update --fix-missing &&\
     libpopt-dev \
     libpng++-dev \
     linux-headers-$(uname -r) \
+    g++-5 \
     vim &&\
     apt-get autoremove
 # libapr1-dev, autoconf, and libtool are necessary for activeMQ
 # libpopt-dev is necessary for libpcan (pcan_pcie_mini)
 # linux headers provide ..linux/version.h needed during pcan installation
+# (the older) g++-5 is needed for a workaround for external/libply
 
 # create and switch to non-root user in sudoers group
 run adduser --disabled-password --gecos '' user &&\
