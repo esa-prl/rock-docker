@@ -1,0 +1,13 @@
+from gerdes/rock
+
+# prevent 'modprobe pcan' in drivers.autobuild from being run
+env RUNNING_IN_DOCKER 'true'
+
+arg DEBIAN_FRONTEND=noninteractive
+env AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR 1
+
+run bash -c "sed -i 's/# - github: esa-prl\/hdpr/- github: esa-prl\/hdpr/g' autoproj/manifest"
+run bash -c "sed -i 's/# - hdpr/- hdpr/g' autoproj/manifest"
+
+# compile all packages
+run bash -c ". env.sh && aup hdpr && amake"
