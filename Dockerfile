@@ -49,7 +49,7 @@ run git config --global user.name "a b" && git config --global user.email "a@b.c
 
 # download and run bootstrap
 copy bootstrap.sh config.yml $ROCK_DIR
-run yes yes | sh ./bootstrap.sh
+run yes "" | sh ./bootstrap.sh
 
 # compile all packages
 run bash -c ". env.sh && amake"
