@@ -1,4 +1,4 @@
-from ubuntu:16.04
+from ubuntu:18.04
 
 # prevent 'modprobe pcan' in drivers.autobuild from being run
 env RUNNING_IN_DOCKER 'true'
