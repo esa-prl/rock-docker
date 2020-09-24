@@ -10,4 +10,4 @@ run bash -c "sed -i 's/# - github: esa-prl\/marta/- github: esa-prl\/marta/g' au
 run bash -c "sed -i 's/# - marta/- marta/g' autoproj/manifest"
 
 # compile all packages
-run bash -c ". env.sh && aup marta && amake"
+run bash -c ". env.sh && autoproj update marta && autoproj osdeps && autoproj build"

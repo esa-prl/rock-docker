@@ -15,4 +15,4 @@ run bash -c "sed -i 's/# - github: esa-prl\/hdpr/- github: esa-prl\/hdpr/g' auto
 run bash -c "sed -i 's/# - hdpr/- hdpr/g' autoproj/manifest"
 
 # compile all packages
-run bash -c ". env.sh && aup hdpr && amake"
+run bash -c ". env.sh && autoproj update hdpr && autoproj osdeps && autoproj build"
