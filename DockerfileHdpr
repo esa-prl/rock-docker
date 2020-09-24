@@ -6,6 +6,11 @@ env RUNNING_IN_DOCKER 'true'
 arg DEBIAN_FRONTEND=noninteractive
 env AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR 1
 
+# linux headers provide ..linux/version.h needed during pcan installation
+run apt-get update &&\
+    apt-get install -y linux-headers-$(uname -r) &&\
+    apt-get autoremove
+
 run bash -c "sed -i 's/# - github: esa-prl\/hdpr/- github: esa-prl\/hdpr/g' autoproj/manifest"
 run bash -c "sed -i 's/# - hdpr/- hdpr/g' autoproj/manifest"
 

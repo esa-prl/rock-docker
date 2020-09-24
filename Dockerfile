@@ -1,8 +1,5 @@
 from ubuntu:18.04
 
-# prevent 'modprobe pcan' in drivers.autobuild from being run
-env RUNNING_IN_DOCKER 'true'
-
 arg DEBIAN_FRONTEND=noninteractive
 env AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR 1
 
