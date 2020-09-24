@@ -37,7 +37,8 @@ workdir $ROCK_DIR
 run git config --global user.name "a b" && git config --global user.email "a@b.c"
 
 # download and run bootstrap
-copy bootstrap.sh config.yml $ROCK_DIR
+run wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/bootstrap.sh
+run wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/config.yml
 run yes "" | sh ./bootstrap.sh
 
 # compile all packages
