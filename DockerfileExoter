@@ -13,5 +13,7 @@ run sudo apt-get update &&\
 run bash -c "sed -i 's/# - github: esa-prl\/exoter/- github: esa-prl\/exoter/g' autoproj/manifest"
 run bash -c "sed -i 's/# - exoter/- exoter/g' autoproj/manifest"
 
+run echo "metapackage('exoter').weak_dependencies = true" >> autoproj/init.rb
+
 # compile all packages
 run bash -c ". env.sh && aup && amake"

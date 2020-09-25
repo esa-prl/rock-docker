@@ -11,5 +11,8 @@ run yes "" | sh ./bootstrap.sh
 run bash -c "sed -i 's/# - github: esa-prl\/rover/- github: esa-prl\/rover/g' autoproj/manifest"
 run bash -c "sed -i 's/# - rover/- rover/g' autoproj/manifest"
 
+run printf "exclude_packages:\n    - perception/stereo" >> autoproj/manifest
+run echo "metapackage('rover').weak_dependencies = true" >> autoproj/init.rb
+
 # compile all packages
 run bash -c ". env.sh && aup && amake"
