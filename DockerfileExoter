@@ -14,4 +14,4 @@ run bash -c "sed -i 's/# - github: esa-prl\/exoter/- github: esa-prl\/exoter/g' 
 run bash -c "sed -i 's/# - exoter/- exoter/g' autoproj/manifest"
 
 # compile all packages
-run bash -c ". env.sh && autoproj update exoter && autoproj osdeps && autoproj build"
+run bash -c ". env.sh && aup && amake"
