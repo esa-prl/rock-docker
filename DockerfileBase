@@ -4,19 +4,14 @@ arg DEBIAN_FRONTEND=noninteractive
 
 env AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR=1
 
-# apt-get: proxy settings, update, upgrade, install dependencies
-#run echo "Acquire::http::Pipeline-Depth '0';\nAcquire::http::No-Cache=True;\nAcquire::BrokenProxy=true;" > /etc/apt/apt.conf.d/99fixbadproxy
-#run apt-get clean
+# install necessary packages
 run apt-get update --fix-missing &&\
     apt-get install -y \
-    apt-utils \
-    ruby \
     ruby-dev \
     wget \
     sudo \
     build-essential \
     git \
-    libssl-dev \
     vim &&\
     apt-get autoremove
 
