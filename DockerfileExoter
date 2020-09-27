@@ -5,7 +5,7 @@ env RUNNING_IN_DOCKER 'true'
 
 env AUTOPROJ_BOOTSTRAP_IGNORE_NONEMPTY_DIR 1
 
-# linux headers provide ..linux/version.h needed during pcan installation
+# install linux headers needed during pcan installation
 run sudo apt-get update &&\
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y linux-headers-$(uname -r) &&\
     sudo apt-get autoremove
