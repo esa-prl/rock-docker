@@ -10,8 +10,8 @@ run sudo apt-get update &&\
     sudo DEBIAN_FRONTEND=noninteractive apt-get install -y linux-headers-$(uname -r) &&\
     sudo apt-get autoremove
 
-run bash -c "sed -i 's/# - github: esa-prl\/hdpr/- github: esa-prl\/hdpr/g' autoproj/manifest"
-run bash -c "sed -i 's/# - hdpr/- hdpr/g' autoproj/manifest"
+run bash -c "sed -i 's/# - github: esa-prl\/hdpr/- github: esa-prl\/hdpr/g' autoproj/manifest" &&\
+    bash -c "sed -i 's/# - hdpr/- hdpr/g' autoproj/manifest"
 
 run echo "metapackage('hdpr').weak_dependencies = true" >> autoproj/init.rb
 

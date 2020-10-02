@@ -3,16 +3,16 @@ from esa-prl/rock-base
 env SHELL /bin/bash
 
 # download and run bootstrap
-run wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/bootstrap.sh
-run wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/config.yml
+run wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/bootstrap.sh && \
+    wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/config.yml
 run yes "" | sh ./bootstrap.sh
 
 # enable rover package set
-run bash -c "sed -i 's/# - github: esa-prl\/rover/- github: esa-prl\/rover/g' autoproj/manifest"
-run bash -c "sed -i 's/# - rover/- rover/g' autoproj/manifest"
+run bash -c "sed -i 's/# - github: esa-prl\/rover/- github: esa-prl\/rover/g' autoproj/manifest" && \
+    bash -c "sed -i 's/# - rover/- rover/g' autoproj/manifest"
 
-run printf "exclude_packages:\n    - perception/stereo" >> autoproj/manifest
-run echo "metapackage('rover').weak_dependencies = true" >> autoproj/init.rb
+run printf "exclude_packages:\n    - perception/stereo" >> autoproj/manifest && \
+    echo "metapackage('rover').weak_dependencies = true" >> autoproj/init.rb
 
 # compile all packages
 run bash -c ". env.sh && aup && amake"
