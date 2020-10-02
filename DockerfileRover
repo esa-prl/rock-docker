@@ -2,6 +2,9 @@ from esa-prl/rock-base
 
 env SHELL /bin/bash
 
+# update package index
+run sudo apt-get update
+
 # download and run bootstrap
 run wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/bootstrap.sh && \
     wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/config.yml
