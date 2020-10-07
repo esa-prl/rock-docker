@@ -13,7 +13,5 @@ run sudo apt-get update &&\
 run bash -c "sed -i 's/# - github: esa-prl\/hdpr/- github: esa-prl\/hdpr/g' autoproj/manifest" &&\
     bash -c "sed -i 's/# - hdpr/- hdpr/g' autoproj/manifest"
 
-run echo "metapackage('hdpr').weak_dependencies = true" >> autoproj/init.rb
-
 # compile all packages
 run bash -c ". env.sh && aup && amake"

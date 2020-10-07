@@ -11,7 +11,5 @@ run sudo apt-get update
 run bash -c "sed -i 's/# - github: esa-prl\/marta/- github: esa-prl\/marta/g' autoproj/manifest" &&\
     bash -c "sed -i 's/# - marta/- marta/g' autoproj/manifest"
 
-run echo "metapackage('marta').weak_dependencies = true" >> autoproj/init.rb
-
 # compile all packages
 run bash -c ". env.sh && aup && amake"
