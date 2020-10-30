@@ -1,4 +1,4 @@
-from esa-prl/rock-rover
+from esa-prl/rock-rover:20
 
 # prevent 'modprobe pcan' in drivers.autobuild from being run
 env RUNNING_IN_DOCKER 'true'

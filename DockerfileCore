@@ -1,4 +1,4 @@
-from esa-prl/rock-base
+from esa-prl/rock-base:20
 
 env SHELL /bin/bash
 
