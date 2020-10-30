@@ -6,8 +6,8 @@ env SHELL /bin/bash
 run sudo apt-get update
 
 # download and run bootstrap
-run wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/bootstrap.sh && \
-    wget -q https://raw.githubusercontent.com/esa-prl/buildconf/master/config.yml
+run wget -q https://raw.githubusercontent.com/esa-prl/buildconf/focal/bootstrap.sh && \
+    wget -q https://raw.githubusercontent.com/esa-prl/buildconf/focal/config.yml
 run yes "" | sh ./bootstrap.sh
 
 # enable rover package set
