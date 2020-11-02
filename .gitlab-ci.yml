@@ -1,0 +1,66 @@
+stages:
+    - base
+    - common
+    - final
+
+base:
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
+    stage: base
+    script:
+        - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "base"
+
+core:
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
+    stage: common
+    before_script:
+        - sed -i "1d" core.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" core.dockerfile
+    script:
+        - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "core"
+
+rover:
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
+    stage: common
+    before_script:
+        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" rover.dockerfile
+    script:
+        - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "rover"
+
+exoter:
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
+    stage: final
+    before_script:
+        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" rover.dockerfile
+        - sed -i "1d" exoter.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/rover:$CI_COMMIT_REF_NAME" exoter.dockerfile
+    script:
+        - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "exoter"
+
+hdpr:
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
+    stage: final
+    before_script:
+        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" rover.dockerfile
+        - sed -i "1d" hdpr.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/rover:$CI_COMMIT_REF_NAME" hdpr.dockerfile
+    script:
+        - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "hdpr"
+
+marta:
+    image:
+        name: gcr.io/kaniko-project/executor:debug
+        entrypoint: [""]
+    stage: final
+    before_script:
+        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" rover.dockerfile
+        - sed -i "1d" marta.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/rover:$CI_COMMIT_REF_NAME" marta.dockerfile
+    script:
+        - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "marta"
+
