@@ -17,7 +17,7 @@ core:
         entrypoint: [""]
     stage: common
     before_script:
-        - sed -i "1d" core.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" core.dockerfile
+        - sed -i "1d" core.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base" core.dockerfile
     script:
         - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "core"
 
@@ -27,7 +27,7 @@ rover:
         entrypoint: [""]
     stage: common
     before_script:
-        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" rover.dockerfile
+        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base" rover.dockerfile
     script:
         - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "rover"
 
@@ -37,8 +37,8 @@ exoter:
         entrypoint: [""]
     stage: final
     before_script:
-        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" rover.dockerfile
-        - sed -i "1d" exoter.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/rover:$CI_COMMIT_REF_NAME" exoter.dockerfile
+        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base" rover.dockerfile
+        - sed -i "1d" exoter.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/rover" exoter.dockerfile
     script:
         - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "exoter"
 
@@ -48,8 +48,8 @@ hdpr:
         entrypoint: [""]
     stage: final
     before_script:
-        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" rover.dockerfile
-        - sed -i "1d" hdpr.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/rover:$CI_COMMIT_REF_NAME" hdpr.dockerfile
+        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base" rover.dockerfile
+        - sed -i "1d" hdpr.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/rover" hdpr.dockerfile
     script:
         - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "hdpr"
 
@@ -59,8 +59,8 @@ marta:
         entrypoint: [""]
     stage: final
     before_script:
-        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base:$CI_COMMIT_REF_NAME" rover.dockerfile
-        - sed -i "1d" marta.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/rover:$CI_COMMIT_REF_NAME" marta.dockerfile
+        - sed -i "1d" rover.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/base" rover.dockerfile
+        - sed -i "1d" marta.dockerfile && sed -i "1ifrom $CI_REGISTRY_IMAGE/rover" marta.dockerfile
     script:
         - ./build_kaniko.sh "$CI_COMMIT_REF_NAME" "$CI_DEFAULT_BRANCH" "$CI_REGISTRY" "$CI_REGISTRY_IMAGE" "$CI_REGISTRY_USER" "$CI_REGISTRY_PASSWORD" "$CI_PROJECT_DIR" "marta"
 
