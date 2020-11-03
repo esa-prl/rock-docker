@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+    exoter:
+        image: esa-prl/rock-exoter
+        build:
+            context: .
+            dockerfile: exoter.dockerfile
+        privileged: true
+        container_name: exoter
+        volumes:
+            - type: bind
+              source: /dev
+              target: /dev
+            - $HOME/.Xauthority:/root/.Xauthority:rw
+        network_mode: "host"
+        environment:
+            - DISPLAY
+
